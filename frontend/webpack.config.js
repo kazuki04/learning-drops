@@ -22,6 +22,6 @@ module.exports = {
   },
   devtool: "source-map",
   devServer: {
-    contentBase: "./dist"
+    static: path.join(__dirname, 'dist')
   }
 };
