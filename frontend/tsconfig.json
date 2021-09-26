@@ -13,6 +13,7 @@
     "inlineSources": true,
     "outDir": "./dist/",
     "noImplicitAny": true,
+    "strictNullChecks": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
