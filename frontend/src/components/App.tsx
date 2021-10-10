@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Header from "./Header/Header"
+import Routes from "./routes/index"
 class App extends Component {
   render() {
     return (
       <>
-        <Header />
-        <h1>Hello React!</h1>
+        <Routes />
       </>
     )
   }
