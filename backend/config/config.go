@@ -7,6 +7,7 @@ import (
 )
 
 type ConfigList struct {
+	Port    int
 	LogFile string
 }
 
@@ -19,6 +20,7 @@ func init() {
 		os.Exit(1)
 	}
 	Config = ConfigList{
+		Port:    cfg.Section("web").Key("port").MustInt(),
 		LogFile: cfg.Section("log").Key("log_file").String(),
 	}
 }
