@@ -7,6 +7,7 @@ import (
 )
 
 type ConfigList struct {
+	LogFile string
 }
 
 var Config ConfigList
@@ -17,5 +18,7 @@ func init() {
 		fmt.Printf("Fail to read file: %v", err)
 		os.Exit(1)
 	}
-	Config = ConfigList{}
+	Config = ConfigList{
+		LogFile: cfg.Section("log").Key("log_file").String(),
+	}
 }

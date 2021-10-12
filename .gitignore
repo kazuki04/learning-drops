@@ -1,6 +1,7 @@
-/frontend/node_modules/
-/.DS_Store
-
 /docker
+/backend/config.ini
 
+/frontend/node_modules/
 /frontend/package-lock.json
+
+/.DS_Store
