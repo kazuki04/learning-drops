@@ -1,6 +1,7 @@
 /docker
 /backend/config.ini
 
+/frontend/auth_config.json
 /frontend/node_modules/
 /frontend/package-lock.json
 
