@@ -1,8 +1,4 @@
-/docker
-/backend/config.ini
+node_modules
 
-/frontend/auth_config.json
-/frontend/node_modules/
-/frontend/package-lock.json
-
-/.DS_Store
+auth_config.json
+.DS_Store

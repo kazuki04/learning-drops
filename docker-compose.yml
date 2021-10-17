@@ -3,19 +3,11 @@ services:
   react:
     build:
       context: .
-      dockerfile: ./docker/react/Dockerfile
-    container_name: learning-drops_frontend_container
+      dockerfile: ./Dockerfile
+    container_name: learning-drops_container
     tty: true
     volumes:
-      - ./frontend:/app/react
+      - ./:/app/react
     command: sh -c "cd /app/react  && yarn start"
     ports:
-      - 8080:8080
-  go:
-    build:
-      context: .
-      dockerfile: ./docker/golang/Dockerfile
-    container_name: learning-drops_backend_container
-    ports:
-      - 8000:8000
-    tty: true
+      - 3000:3000
