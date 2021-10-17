@@ -1,17 +1,20 @@
 import React from "react";
-import MainTitle from '../atoms/titles/MainTitle'
-import LoginButton from "../atoms/buttons/auth/LoginButton"
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
+import MainTitle from '../atoms/titles/MainTitle';
+import LoginButton from "../atoms/buttons/auth/LoginButton";
+import AccountMenu from "../molecules/AccountMenu";
+import { AppBar, Toolbar, CssBaseline } from '@mui/material';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, borderBottom: 1, borderColor: 'rgb(0 0 0 / 12%)' }} style={{backgroundColor: "white"}} elevation={0}>
       <CssBaseline />
-      <Toolbar>
+      <Toolbar sx={{justifyContent: "space-between"}}>
         <MainTitle />
-        <LoginButton />
+          {!isAuthenticated && <LoginButton />}
+          {isAuthenticated && <AccountMenu />}
       </Toolbar>
     </AppBar>
   )
