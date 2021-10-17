@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Routes from "./routes/index"
-class App extends Component {
-  render() {
+import { useAuth0 } from "@auth0/auth0-react";
+import LinearIndeterminate from "../components/atoms/progress/LinearProgress";
+
+const App = () => {
+  const { isLoading } = useAuth0();
+
+  if(isLoading){
     return (
-      <>
-        <Routes />
-      </>
+      <LinearIndeterminate />
     )
   }
+
+  return(
+    <>
+      <Routes />
+    </>
+  )
 }
 
 export default App;
