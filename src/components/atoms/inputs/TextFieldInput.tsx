@@ -7,7 +7,7 @@ interface TextFieldInputProps {
 
 const TextFieldInput = (prop: TextFieldInputProps) => {
   return (
-    <TextField id="standard-basic" label={prop.text} variant="standard" />
+    <TextField id="filled-basic" label={prop.text} variant="filled" />
   )
 }
 
