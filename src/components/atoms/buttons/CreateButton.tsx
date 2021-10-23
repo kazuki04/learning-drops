@@ -1,9 +1,13 @@
 import React from "react";
 import Button from '@mui/material/Button';
 
-const CreateButton = () => {
+interface CreateButtonProps {
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const CreateButton = (prop: CreateButtonProps) => {
   return (
-    <Button>Create</Button>
+    <Button onClick={prop.onClick}>Create</Button>
   )
 };
 
