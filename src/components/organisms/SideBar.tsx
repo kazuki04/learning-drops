@@ -1,18 +1,18 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import React from 'react';
+import {useState} from "react"
+import {Box, Drawer, Toolbar, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import AddButton from  '../atoms/buttons/AddButton'
+import SectionModal from "../molecules/modal/SectionModal"
 
 const drawerWidth = 240;
 
 let section = ["test1", "test2"]
 
 const SideBar = () => {
+  const [open, setOpen]:[boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
+  const handleOpen = () => setOpen(true);
+
   return (
     <Drawer
     variant="permanent"
@@ -25,6 +25,13 @@ const SideBar = () => {
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List>
+          <ListItemButton onClick={handleOpen}>
+            <ListItemIcon>
+              <AddButton/>
+            </ListItemIcon>
+            <ListItemText primary="add section" />
+          </ListItemButton>
+          <SectionModal open={open} setOpen={setOpen} />
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
