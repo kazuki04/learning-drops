@@ -1,7 +1,7 @@
 import React from "react";
-import MainTitle from '../atoms/titles/MainTitle';
-import LoginButton from "../atoms/buttons/auth/LoginButton";
-import AccountMenu from "../molecules/AccountMenu";
+import MainTitle from '../../atoms/titles/MainTitle';
+import LoginButton from "../../atoms/buttons/auth/LoginButton";
+import AccountMenu from "../AccountMenu";
 import { AppBar, Toolbar, CssBaseline } from '@mui/material';
 import { useAuth0 } from "@auth0/auth0-react";
 
