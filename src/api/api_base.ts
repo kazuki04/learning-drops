@@ -1,15 +1,5 @@
 import axios from 'axios';
-
-export interface Request {
-  request_url: string,
-  payload?: Section,
-  accessToken?: Promise<string> | undefined
-}
-
-export interface Section {
-  title: string
-  user_id: string
-} 
+import { Request } from './types'
 
 const baseUrl: string = "http://localhost:8000/api"
 
