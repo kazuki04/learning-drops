@@ -1,11 +1,11 @@
-import React from 'react';
-import {useState} from "react"
-import {Box, Drawer, Toolbar, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Hidden} from '@mui/material';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import AddButton from  '../atoms/buttons/AddButton'
+import AddButton from  '../atoms/icons/AddButton'
+import HomeIcon from '../atoms/icons/HomeIcon';
 import SectionModal from "../molecules/modal/SectionModal"
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 let section = ["test1", "test2"]
 
@@ -13,18 +13,23 @@ const SideBar = () => {
   const [open, setOpen]:[boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
 
-  return (
+  const drawer = (
     <Drawer
-    variant="permanent"
-    sx={{
-      width: drawerWidth,
-      flexShrink: 0,
-      [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-    }}
+      variant="permanent"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+      }}
     >
-      <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List>
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={"test"} />
+          </ListItemButton>
           <ListItemButton onClick={handleOpen}>
             <ListItemIcon>
               <AddButton/>
@@ -43,6 +48,13 @@ const SideBar = () => {
         </List>
       </Box>
     </Drawer>
+  )
+
+  return (
+    // hidden drawer if the display for mobile
+    <Hidden smDown implementation="css">
+      {drawer}
+    </Hidden>
   );
 }
 
