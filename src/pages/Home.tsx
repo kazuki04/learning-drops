@@ -1,15 +1,15 @@
 import React from "react";
 import Box from '@mui/material/Box';
-import Header from "../components/organisms/Header";
 import SideBar from "../components/organisms/SideBar";
+import Section from "../components/organisms/Section";
 
 const Home = () => {
   return (
     <Box sx={{ display: 'flex' }}>
-      <Header />
       <SideBar />
+      <Section />
     </Box>
     )
-} 
+}
 
 export default Home;
