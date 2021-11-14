@@ -7,9 +7,13 @@ export interface Request {
 }
 
 export interface Response {
-  data: AnyJson
+  data: JSONValue
 }
 
-type AnyJson =  boolean | number | string | null | JsonArray | JsonMap;
-interface JsonMap {  [key: string]: AnyJson; }
-interface JsonArray extends Array<AnyJson> {}
+type JSONValue =
+ | string
+ | number
+ | boolean
+ | null
+ | JSONValue[]
+ | {[key: string]: JSONValue}
