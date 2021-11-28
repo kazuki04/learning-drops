@@ -3,6 +3,7 @@ export interface Request {
   // To Do: The payload's type is appropriate?
   // Should I set the type AnyJson?
   payload?: Object,
+  params?: Object,
   accessToken?: Promise<string> | undefined
 }
 
@@ -11,9 +12,9 @@ export interface Response {
 }
 
 type JSONValue =
- | string
- | number
- | boolean
- | null
- | JSONValue[]
- | {[key: string]: JSONValue}
+  | string
+  | number
+  | boolean
+  | null
+  | JSONValue[]
+  | { [key: string]: JSONValue }
