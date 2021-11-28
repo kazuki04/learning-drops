@@ -6,13 +6,13 @@ import LinearIndeterminate from "../components/atoms/progress/LinearProgress";
 const App = () => {
   const { isLoading } = useAuth0();
 
-  if(isLoading){
+  if (isLoading) {
     return (
       <LinearIndeterminate />
     )
   }
 
-  return(
+  return (
     <>
       <Routes />
     </>
