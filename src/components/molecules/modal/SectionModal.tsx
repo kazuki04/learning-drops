@@ -4,7 +4,7 @@ import TextFieldInput from '../../atoms/inputs/TextFieldInput';
 import CreateButton from '../../atoms/buttons/CreateButton';
 import { postRequest } from '../../../api/api_base'
 import { useAuth0 } from "@auth0/auth0-react";
-import { Request } from "../../../api/api_base"
+import { Request } from "../../../api/types"
 import auth_config from "../../../../auth_config.json"
 
 interface SectionModalProps {
@@ -40,7 +40,7 @@ const SectionModal = (prop: SectionModalProps) => {
     if (user != undefined && user.sub != undefined) {
       let accessToken = getAccessToken()
       let payload: Section = {title: section_title, user_id: user.sub}
-      let request: Request = {request_url: "/section",  payload: payload, accessToken: accessToken}
+      let request: Request = {request_url: "/section", payload: payload, accessToken: accessToken}
       postRequest(request)
     }
   }
