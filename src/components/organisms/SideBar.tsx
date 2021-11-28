@@ -1,17 +1,55 @@
-import React, {useState} from 'react';
-import {Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Hidden} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { getRequest } from '../../api/api_base'
+import { Request } from "../../api/types"
+import { SectionState } from '../../types/section/types';
+import { useAuth0 } from "@auth0/auth0-react";
+import auth_config from "../../../auth_config.json"
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Hidden } from '@mui/material';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import AddButton from  '../atoms/icons/AddButton'
+import AddButton from '../atoms/icons/AddButton'
 import HomeIcon from '../atoms/icons/HomeIcon';
 import SectionModal from "../molecules/modal/SectionModal"
 
 const drawerWidth = 300;
 
-let section = ["test1", "test2"]
-
 const SideBar = () => {
-  const [open, setOpen]:[boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
+  const [open, setOpen]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
+  const [sections, setSections]: [Array<SectionState>, React.Dispatch<React.SetStateAction<any>>] = useState([])
+  const { user, getAccessTokenSilently } = useAuth0();
+
+  const getAccessToken = () => {
+    try {
+      const accessToken = getAccessTokenSilently({
+        audience: auth_config.audience,
+      });
+      return accessToken;
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
+  const getSections = () => {
+    if (user != undefined && user.sub != undefined) {
+      let accessToken = getAccessToken()
+      let request: Request = { request_url: "/sections", accessToken: accessToken, params: { user_id: user.sub } }
+      let response = getRequest(request)
+      response.then((response) => {
+        if (response != undefined) {
+          setSections(response.data)
+        }
+      }).catch((e) => {
+        console.log(e.message)
+      })
+    }
+  }
+
+  useEffect(() => {
+    getSections()
+    return () => {
+      setSections([])
+    }
+  }, [])
 
   const drawer = (
     <Drawer
@@ -32,22 +70,23 @@ const SideBar = () => {
           </ListItemButton>
           <ListItemButton onClick={handleOpen}>
             <ListItemIcon>
-              <AddButton/>
+              <AddButton />
             </ListItemIcon>
             <ListItemText primary="add section" />
           </ListItemButton>
           <SectionModal open={open} setOpen={setOpen} />
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
+          {sections.map((section) => (
+            <ListItem button key={section.title}>
+              < ListItemIcon >
                 <FolderOpenIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={section.title} />
+              <ListItemText />
             </ListItem>
           ))}
         </List>
-      </Box>
-    </Drawer>
+      </Box >
+    </Drawer >
   )
 
   return (
