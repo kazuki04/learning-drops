@@ -1,22 +1,26 @@
 import React from "react";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+import { Box, Divider, Hidden, Toolbar, Typography, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import SectionTitle from "../../atoms/titles/SectionTitle";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SectionHeader = () => {
+  const { getAccessTokenSilently } = useAuth0();
+  let accessToken = getAccessTokenSilently()
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar variant="dense">
+    <Box sx={{ width: 1 }}>
+      <Toolbar variant="dense">
+        <SectionTitle section_title="test" />
+        <Hidden
+          smUp implementation="css"
+        >
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-        </Toolbar>
-      </AppBar>
+        </Hidden>
+      </Toolbar>
+      <Divider />
     </Box>
   )
 }
