@@ -15,7 +15,7 @@ const drawerWidth = 300;
 const SideBar = () => {
   const [open, setOpen]: [boolean, React.Dispatch<React.SetStateAction<boolean>>] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
-  const [sections, setSections]: [Array<SectionState>, React.Dispatch<React.SetStateAction<any>>] = useState([])
+  const [sections, setSections]: [SectionState[], React.Dispatch<React.SetStateAction<any>>] = useState<SectionState[]>([])
   const { user, getAccessTokenSilently } = useAuth0();
 
   const getAccessToken = () => {
@@ -74,7 +74,7 @@ const SideBar = () => {
             </ListItemIcon>
             <ListItemText primary="add section" />
           </ListItemButton>
-          <SectionModal open={open} setOpen={setOpen} />
+          <SectionModal open={open} setOpen={setOpen} sections={sections} setSections={setSections} />
           {sections.map((section) => (
             <ListItem button key={section.title}>
               < ListItemIcon >
