@@ -7,8 +7,11 @@ export interface Request {
   accessToken?: Promise<string> | undefined
 }
 
+// Todo: Remove the Response Type because the response type is
 export interface Response {
   data: JSONValue
+  status: number
+  statusText: string
 }
 
 type JSONValue =
